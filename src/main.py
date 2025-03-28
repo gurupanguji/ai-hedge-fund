@@ -19,6 +19,7 @@ from utils.display import print_trading_output
 from utils.analysts import ANALYST_ORDER, get_analyst_nodes
 from utils.progress import progress
 from llm.models import LLM_ORDER, get_model_info
+import data.portfolio as myportfolio
 
 import argparse
 from datetime import datetime
@@ -273,6 +274,13 @@ if __name__ == "__main__":
             } for ticker in tickers
         }
     }
+
+    # initialize to user's portfolio if it exists
+    if (myportfolio.portfolio):
+      portfolio = myportfolio.portfolio
+
+    print ("initializing with RR portfolio")
+    print (portfolio)
 
     # Run the hedge fund
     result = run_hedge_fund(
